@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>The 3D carousel</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding: 0;
+		}
+		ul,ol{
+			list-style: none;
+		}
+		.swiper{
+			position: relative;
+			width: 1200px;
+			margin:10px auto;
+		}
+		.swiper ul{
+			height: 500px;
+		}
+		.swiper ul li{
+			position: absolute;
+			left: 100px;
+			top: 0;
+		}
+		.swiper li img{
+			width: 100%;
+		}
+		.arr{
+			display: block;
+			position: absolute;
+			/* top: 50%; */
+			left: 0;
+			width: 30px;
+			height: 70px;
+			/* margin-top: -35px; */
+			text-align: center;
+			line-height: 70px;
+			font-size: 20px;
+			color: #fff;
+			background: rgba(0,0,0,.7);
+			text-decoration: none;
+			z-index: 999;
+
+		}
+		.arr.arr-r{
+			left: auto;
+			right: 0;
+		}
+	</style>
+	<script type="text/javascript">
+		//初始值
+		var arr = [
+		        {   //  1
+		            width:400,
+		            top:70,
+		            left:50,
+		            opacity:.2,
+		            zIndex:2
+		        },
+		        {  // 2
+		            width:600,
+		            top:120,
+		            left:0,
+		            opacity:.8,
+		            zIndex:3
+		        },
+		        {   // 3
+		            width:800,
+		            top:100,
+		            left:200,
+		            opacity:1,
+		            zIndex:4
+		        },
+		        {  // 4
+		            width:600,
+		            top:120,
+		            left:600,
+		            opacity:.8,
+		            zIndex:3
+		        },
+		        {   //5
+		            width:400,
+		            top:70,
+		            left:750,
+		            opacity:.2,
+		            zIndex:2
+		        }
+		    ];
+	    var arr2 = [
+	            {  // 2
+	                width:600,
+	                top:120,
+	                left:0,
+	                opacity:.8,
+	                zIndex:3
+	            },
+	            {   // 3
+	                width:800,
+	                top:100,
+	                left:200,
+	                opacity:1,
+	                zIndex:4
+	            },
+	            {  // 4
+	                width:600,
+	                top:120,
+	                left:600,
+	                opacity:.8,
+	                zIndex:3
+	            },
+	            {   //5
+	                width:400,
+	                top:70,
+	                left:750,
+	                opacity:.2,
+	                zIndex:2
+	            },
+	            {   //  1
+	                width:400,
+	                top:70,
+	                left:50,
+	                opacity:.2,
+	                zIndex:2
+	            }
+	        ];
+
+		    window.onload = function(){
+		    	var ul = document.getElementsByTagName('ul')[0];
+		    	var arrR = document.getElementsByClassName('arr-r')[0];
+		    	var arrL = document.getElementsByClassName('arr-l')[0];
+		    	var lis = ul.children;
+		    	var lock = true;//加锁  动画没有执行完毕 不允许在执行其他点击事件
+		    	for(var i = 0 ; i < lis.length;i ++){
+		    		animate(lis[i],arr[i]);
+		    	}
+		    	arrR.onclick = function(){
+		    		// 往右走 就相当于吧数组第一个位置的属性换到了最后一个 然后重新执行动画函数
+		    		// 问题：数组操作
+	    			// 1.获取
+	    			// 2.删除   shift  ==》返回被删除的对象
+	    			// 3.添加   push()
+	    			if(lock){
+		    			arr.push(arr.shift());
+			    		for(var i = 0 ; i < lis.length;i ++){
+	    					lock = false;  //锁住
+			    			animate(lis[i],arr[i],openLock);
+			    		}
+	    			}
+		    	}
+		    	arrL.onclick = function(){
+		    		// 往右走 就相当于吧数组第一个位置的属性换到了最后一个 然后重新执行动画函数
+		    		// 问题：数组操作
+	    			// 1.获取
+	    			// 2.删除
+	    			// 3.添加
+	    			if(lock){
+		    			arr.unshift(arr.pop());
+			    		for(var i = 0 ; i < lis.length;i ++){
+			    			lock = false;
+			    			animate(lis[i],arr[i],openLock);
+			    		}
+	    			}
+		    	}
+		    	function openLock(){
+		    		lock = true;
+		    	}
+		    }
+	</script>
+</head>
+<body>
+	<div class="swiper">
+		<ul>
+			<li><img src="img/p1.jpeg" alt=""></li>
+			<li><img src="img/p2.jpeg" alt=""></li>
+			<li><img src="img/p3.jpeg" alt=""></li>
+			<li><img src="img/p4.jpeg" alt=""></li>
+			<li><img src="img/p5.jpeg" alt=""></li>
+		</ul>
+		<a href="javascaript:;" class="arr arr-l"><</a>
+		<a href="javascaript:;" class="arr arr-r">></a>
+	</div>
+
+	<script type="text/javascript">
+		// cb  callBack 回调
+		/**
+		*	一个标签多个属性的缓动动画封装
+		*	参数：ele缓动的对象
+		*		  data 缓动的结果 targets
+		*		  cb 回调函数
+		*
+		**/
+
+
+		function animate(ele,data,cb){
+			clearInterval(ele.timer);
+
+			ele.timer = setInterval(function(){
+				var flag = true; // 每一轮都假设动画走完了
+				for(var i in data){
+					if(i === 'zIndex'){
+						ele.style.zIndex = data[i];
+						continue;
+					}
+					if(i === 'opacity'){
+						var leader = window.getComputedStyle(ele,null)[i];
+						// int 整数   float 小数  考虑取到比如 0.1 ==》10
+						leader = parseFloat(leader)*100;
+
+						var target = data[i]*100;
+						var step = (target - leader)/10;
+						leader = leader + (step>0?Math.ceil(step):Math.floor(step));
+						ele.style.opacity = leader/100;
+						if(leader != target){  //只要有一个属性没完成 该轮报废
+							flag = false;
+						}
+						// break;
+						continue;
+					}
+					// 获取当前位置属性 width 需要通过另一种方式 获取当前该属性的值
+					 	leader = window.getComputedStyle(ele,null)[i];  //string  带px
+						leader = parseInt(leader.replace('px',''));   //'100px'==>'100'==>100
+					//当前属性的目标值
+						 target = data[i];
+					//计算步长
+						 step = (target - leader)/10;   //-140
+					//当前属性值
+				    leader = leader + (step>0?Math.ceil(step):Math.floor(step));  // 1260 每一步应该走到哪个坐标
+				   	//给元素相应的属性赋值
+				   	ele.style[i] = leader+'px';
+				    //什么时候停止定时器呢？
+					/*打个比方 领导发话了，班里所有的同学完成作业，才能下课。
+						每隔一分钟所有的同学过来 汇报工作
+						每一轮 都假设所有的同学完成作业了
+						只要有一个同学没完成  该轮就当做没完成处理 不下课
+						我就不下课	*/
+					if(leader != target){  //只要有一个属性没完成 该轮报废
+						flag = false;
+					}
+				}
+				if(flag){
+					clearInterval(ele.timer);
+					if(cb){
+						cb();
+					}
+				}
+			},20);
+		}
+	</script>
+</body>
+</html>
