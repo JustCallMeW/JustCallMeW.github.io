@@ -66,9 +66,9 @@
 		ctx.fillStyle = 'white';
 		var points = [
 				{
-					x:50,
-					y:50,
-					r:50
+					// x:50,
+					// y:50,
+					// r:50
 				}
 			];
 		for(var i = 0 ; i < num ; i ++){
@@ -86,23 +86,23 @@
 				// ctx.beginPath();
 				ctx.moveTo(points[i].x,points[i].y);
 				ctx.arc(points[i].x,points[i].y,points[i].r,0,Math.PI*2,false);
-			}	
+			}
 			ctx.fill();
 			//  更新坐标
 			xuehuapiaopiao();
 			requestAnimationFrame(chongfupiao);
 		}
 		chongfupiao();
-		
+
 		// setInterval(chongfupiao,1000/60);
-		
+
 		//  更改坐标函数
 		function xuehuapiaopiao(){
 			for(var i = 0 ; i < num ; i++){
 				points[i].y += Math.random() * 2;
 				if(points[i].y > h){
 					points[i].y = 0;
-				} 
+				}
 			}
 		}
 	</script>
