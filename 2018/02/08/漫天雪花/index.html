@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="漫天雪花      		*{   			margin: 0;   			padding: 0;   		}   		html,body{   			height: 100%;   		}   		canvas{/*和img标签一样，具有垂直对齐性质，得转换成块状*/   			/* position: absolute; */   			display: block;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/2018/02/08/漫天雪花/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="漫天雪花      		*{   			margin: 0;   			padding: 0;   		}   		html,body{   			height: 100%;   		}   		canvas{/*和img标签一样，具有垂直对齐性质，得转换成块状*/   			/* position: absolute; */   			display: block;">
+<meta property="og:updated_time" content="2018-02-08T11:09:35.551Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+<meta name="twitter:description" content="漫天雪花      		*{   			margin: 0;   			padding: 0;   		}   		html,body{   			height: 100%;   		}   		canvas{/*和img标签一样，具有垂直对齐性质，得转换成块状*/   			/* position: absolute; */   			display: block;">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Suche"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-漫天雪花" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/08/漫天雪花/" class="article-date">
+  <time datetime="2018-02-08T11:13:37.818Z" itemprop="datePublished">2018-02-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>漫天雪花</title>
+  <style>
+  		*{
+  			margin: 0;
+  			padding: 0;
+  		}
+  		html,body{
+  			height: 100%;
+  		}
+  		canvas{/*和img标签一样，具有垂直对齐性质，得转换成块状*/
+  			/* position: absolute; */
+  			display: block;
+  			/* width: 100%;
+  			height: 100%; */
+  			background-color: #000;
+  		}
+  </style>
+</head>
+<body>
+	<canvas id="canvas">您的浏览器不支持canvas绘图标签，请您更换浏览器。</canvas>
+	<script>
+		var can = document.querySelector('#canvas');
+		var ctx = can.getContext("2d"); //设置绘图环境
+		//获取浏览器窗口的宽高
+		var w = can.width = window.innerWidth;
+		var h = can.height = window.innerHeight;
+		//监听浏览器窗口的变换
+		window.onresize = function(){
+			w = can.width = window.innerWidth;
+			h = can.height = window.innerHeight;
+		}
+		//绘制一个矩形
+		//ctx.fill() 填充  实心的
+		//ctx.stroke() 触笔  空心的
+		/*ctx.fillStyle = 'white';
+		ctx.fillRect(50,50,50,50);//距离左上角的x、y距离，w、h宽高
+		ctx.strokeStyle = 'white';
+		ctx.strokeRect(150,150,50,50);*/
+
+		//绘制圆形
+		//设置圆形路径：xy圆形坐标，r半径(0~2π，弧度制) false是逆时针
+		/*ctx.arc(250,250,50,0,Math.PI*2,false);
+		ctx.strokeStyle = 'yellow';
+		ctx.stroke();
+		ctx.fill();*/
+
+		//雪花原理
+		/*var y = 0;
+		ctx.fillStyle = 'white';
+		setInterval(function(){
+			y++;
+			ctx.clearRect(0,0,w,h);//清空画布
+			ctx.beginPath();//开始路径
+			ctx.arc(250,y,50,0,Math.PI*2,false);
+			ctx.fill();
+		},10)*/
+
+
+		var num = 1000;
+		ctx.fillStyle = 'white';
+		var points = [];
+		for(var i = 0 ; i < num ; i ++){
+			points.push({
+				x : Math.random() * w,//0~w的随机数
+				y : Math.random() * h,//0~h的随机数
+				r : Math.random() * 5,//0~5的随机数
+			});
+		}
+		/*console.log(points);*/
+		function chongfupiao(){
+			ctx.beginPath();
+			ctx.clearRect(0,0,w,h);//清空画布
+			for(var i = 0 ; i < num ; i ++){
+				// ctx.beginPath();
+				ctx.moveTo(points[i].x,points[i].y);
+				ctx.arc(points[i].x,points[i].y,points[i].r,0,Math.PI*2,false);
+			}
+			ctx.fill();
+			//  更新坐标
+			xuehuapiaopiao();
+			requestAnimationFrame(chongfupiao);
+		}
+		chongfupiao();
+
+		// setInterval(chongfupiao,1000/60);
+
+		//  更改坐标函数
+		function xuehuapiaopiao(){
+			for(var i = 0 ; i < num ; i++){
+				points[i].y += Math.random() * 2;
+				if(points[i].y > h){
+					points[i].y = 0;
+				}
+			}
+		}
+	</script>
+</body>
+</html>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2018/02/08/漫天雪花/" data-id="cjdeep78w0001ewnnhia4ju58" class="article-share-link">Teilen</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/02/08/雨滴下落/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Neuer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/02/08/QQ企鹅/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Älter</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archiv</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">letzter Beitrag</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2018/02/08/雨滴下落/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/08/漫天雪花/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/08/QQ企鹅/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/07/This-is-mine/">This are some my little works.</a>
+          </li>
+        
+          <li>
+            <a href="/2018/02/07/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+
+
+  </div>
+</body>
+</html>
