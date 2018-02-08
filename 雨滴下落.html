@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>雨滴下落</title>
 	<style>
 		*{
 			margin: 0;
@@ -19,7 +19,7 @@
 </head>
 <body>
 	<canvas id="canvas">您的浏览器版本过低，请您更换浏览器！</canvas>
-	
+
 	<script>
 		var can = document.querySelector('#canvas');
 		//绘图环境
@@ -49,7 +49,7 @@
 			cxt.clearRect(0,0,w,h);//清除之前的画布，否则是不断出现的矩形
 			cxt.fillRect(x,y,50,50);
 			//原生js的经动画
-			requestAnimationFrame(move);	
+			requestAnimationFrame(move);
 		}
 		move();*/
 		/*setInterval(function(){
@@ -133,7 +133,7 @@
 			for(var i = 0 ; i < drops.length ; i++){
 			drops[i].draw();
 			}
-			requestAnimationFrame(move);	
+			requestAnimationFrame(move);
 		}
 		move();
 
